@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;// импорт класса для контроллера
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,8 +15,6 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::post('/contact/submit', function () {
-     dd(Request::all());
-})->name('contact-form');
+Route::post('/contact/submit', [ContactController::class,'submit'])->name('contact-form'); // в версии Laravel  8 контролеры теперь вызываются так обязательно импорт класс
 
 
