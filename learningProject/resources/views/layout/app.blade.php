@@ -13,9 +13,12 @@
     @include('inc/header')
 
     @if(Request::is('/'))
-        @include('inc/hero')
+        @include('inc.hero')
     @endif
+
+
     <div class="container">
+        @include('inc.messages')
         <div class="row">
             <div class="col-8">
                 @yield('content')
