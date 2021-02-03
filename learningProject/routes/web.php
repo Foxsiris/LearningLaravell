@@ -14,7 +14,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
+Route::get('/contact/all', [ContactController::class,'allDate'])->name('contact-data');
 Route::post('/contact/submit', [ContactController::class,'submit'])->name('contact-form'); // в версии Laravel  8 контролеры теперь вызываются так обязательно импорт класс
 
 
