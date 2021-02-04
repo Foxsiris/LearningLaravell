@@ -11,7 +11,7 @@
             <h3>{{$element->subject}}</h3>
             <p>Your email:{{$element->email}}</p>
             <p><small>Date: {{$element->created_at}}</small></p>
-            <a href="#">
+            <a href="{{route('contact-data-one',$element->id)}}">
                 <button class="btn btn-warning">Детальнее</button>
             </a>
         </div>
