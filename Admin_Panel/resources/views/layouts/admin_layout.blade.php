@@ -8,23 +8,24 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="admin/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="/admin/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="admin/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="admin/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="resources/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -37,7 +38,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Админ Панель</span>
         </a>
 
@@ -46,7 +47,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -60,7 +61,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a href="{{route('homeAdmin')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -68,7 +69,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item active menu-open ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>
@@ -84,14 +85,14 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="{{route('post.create')}}" class="nav-link">
                                     <p>Добавить статьи</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-align-left"></i>
                             <p>
@@ -101,13 +102,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="{{route('category.index')}}" class="nav-link">
                                     <p>Все категории</p>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="{{route('category.create')}}" class="nav-link">
                                     <p>Добавить категории</p>
                                 </a>
                             </li>
@@ -171,5 +172,54 @@
 <script src="admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="admin/dist/js/pages/dashboard.js"></script>
+
+<script src="https://cdn.tiny.cloud/1/bbbyg1gi2cy1qr0t7liivil5r34g8y62156alh3n3rf624bf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '.editor',
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+       toolbar_mode: 'floating',
+    });
+
+    function elFinderBrowser (callback, value, meta) {
+        tinymce.activeEditor.windowManager.openUrl({
+            title: 'File Manager',
+            url: '/elfinder/tinymce5',
+            /**
+             * On message will be triggered by the child window
+             *
+             * @param dialogApi
+             * @param details
+             * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+             */
+            onMessage: function (dialogApi, details) {
+                if (details.mceAction === 'fileSelected') {
+                    const file = details.data.file;
+
+                    // Make file info
+                    const info = file.name;
+
+                    // Provide file and text for the link dialog
+                    if (meta.filetype === 'file') {
+                        callback(file.url, {text: info, title: info});
+                    }
+
+                    // Provide image and alt text for the image dialog
+                    if (meta.filetype === 'image') {
+                        callback(file.url, {alt: info});
+                    }
+
+                    // Provide alternative source and posted for the media dialog
+                    if (meta.filetype === 'media') {
+                        callback(file.url);
+                    }
+
+                    dialogApi.close();
+                }
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
